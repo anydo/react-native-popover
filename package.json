@@ -1,5 +1,5 @@
 {
-  "name": "@taw/react-native-popover",
+  "name": "react-native-popover",
   "version": "2.8.2",
   "description": "A <Popover /> component for react-native",
   "main": "Popover.js",
@@ -32,8 +32,6 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "@taw/build-scripts": "^1.4.0",
-    "@taw/condition-vsts": "^1.0.5",
     "json": "^9.0.3",
     "npm-release": "^1.0.0",
     "react-native": "0.29.0"
