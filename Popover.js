@@ -373,7 +373,7 @@ var Popover = React.createClass({
                     }
                 ],
             },
-            contentStyle: {
+            contentContainerStyle: {
                 transform: [
                     {translateX: animatedValues.translate.x},
                     {translateY: animatedValues.translate.y},
@@ -387,6 +387,7 @@ var Popover = React.createClass({
         var background = [];
         var popover = [];
         var arrow = [];
+        var contentContainer = [];
         var content = [];
 
         [this._getDefaultAnimatedStyles(), this.props].forEach((source) => {
@@ -394,6 +395,7 @@ var Popover = React.createClass({
                 background.push(source.backgroundStyle);
                 popover.push(source.popoverStyle);
                 arrow.push(source.arrowStyle);
+                contentContainer.push(source.contentContainerStyle);
                 content.push(source.contentStyle);
             }
         });
@@ -402,8 +404,13 @@ var Popover = React.createClass({
             background,
             popover,
             arrow,
+            contentContainer,
             content
         }
+    },
+
+    hasTitle() {
+      return this.props.title !== null && this.props.title !== undefined;
     },
 
     render() {
@@ -413,12 +420,13 @@ var Popover = React.createClass({
 
         var {popoverOrigin, placement} = this.state;
         var extendedStyles = this._getExtendedStyles();
-        var contentContainerStyle = [styles.contentContainer, ...extendedStyles.content];
+        var contentContainerStyle = [styles.contentContainer, ...extendedStyles.contentContainer];
         var contentModeStyling;
         var dropShadowStyling;
         var contentStyle;
         var arrowColorStyle;
         var arrowDynamicStyle = this.getArrowDynamicStyle();
+        const hasTitle = this.hasTitle();
 
         //apply the relevant style required
         if (this.props.mode === 'select') {
@@ -427,12 +435,15 @@ var Popover = React.createClass({
         } else {
             contentModeStyling = styles.popoverContainer;
             dropShadowStyling = styles.dropShadow;
-            contentStyle = this.props.title == null ? [styles.popoverContent, styles.popoverTopRadius] : styles.popoverContent;
+            contentStyle = [styles.popoverContent, ...extendedStyles.content];
+            if (!hasTitle) {
+              contentStyle.push(styles.popoverTopRadius);
+            }
 
-            if (placement === PLACEMENT_OPTIONS.TOP) {
+            if (placement === PLACEMENT_OPTIONS.TOP && hasTitle) {
                 arrowColorStyle = this.getArrowColorStyle(flattenStyle(styles.title).backgroundColor);
             } else {
-                arrowColorStyle = this.getArrowColorStyle(flattenStyle(styles.popoverContent).backgroundColor);
+                arrowColorStyle = this.getArrowColorStyle(flattenStyle(contentStyle).backgroundColor);
             }
         }
         // Special case, force the arrow rotation even if it was overriden
@@ -449,7 +460,7 @@ var Popover = React.createClass({
                 <View style={[styles.container, contentSizeAvailable && styles.containerVisible]}>
                     <Animated.View style={[{top: popoverOrigin.y, left: popoverOrigin.x,}, ...extendedStyles.popover]}>
                         <Animated.View ref='content' onLayout={this.measureContent} style={[contentContainerStyle, contentModeStyling]}>
-                            {this.props.title !== null && this.props.title !== undefined
+                            {hasTitle
                                 ?
                                 <View style={[titleStyle, {width: contentSizeAvailable}, dropShadowStyling]}>
                                     <Text style={styles.titleText}>{this.props.title}</Text>
@@ -541,4 +552,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = Popover; 
+module.exports = Popover;
