@@ -435,10 +435,11 @@ var Popover = React.createClass({
         } else {
             contentModeStyling = styles.popoverContainer;
             dropShadowStyling = styles.dropShadow;
-            contentStyle = [styles.popoverContent, ...extendedStyles.content];
+            contentStyle = [styles.popoverContent];
             if (!hasTitle) {
               contentStyle.push(styles.popoverTopRadius);
             }
+            contentStyle.push(...extendedStyles.content); // custom style should be the last in order to be able to override the default values
 
             if (placement === PLACEMENT_OPTIONS.TOP && hasTitle) {
                 arrowColorStyle = this.getArrowColorStyle(flattenStyle(styles.title).backgroundColor);
@@ -467,7 +468,7 @@ var Popover = React.createClass({
                                 </View>
                                 : null
                             }
-                            <Animated.View style={[{width: contentSizeAvailable}, contentStyle, dropShadowStyling]}>
+                            <Animated.View style={[{width: contentSizeAvailable}, dropShadowStyling, contentStyle]}>
                                 {this.props.children}
                             </Animated.View>
                         </Animated.View>
