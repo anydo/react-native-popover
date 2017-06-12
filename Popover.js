@@ -460,7 +460,7 @@ var Popover = React.createClass({
             <TouchableWithoutFeedback onPress={this.props.onClose}>
                 <View style={[styles.container, contentSizeAvailable && styles.containerVisible]}>
                     <Animated.View style={[{top: popoverOrigin.y, left: popoverOrigin.x,}, ...extendedStyles.popover]}>
-                        <Animated.View ref='content' onLayout={this.measureContent} style={[contentContainerStyle, contentModeStyling]}>
+                        <Animated.View ref='content' onLayout={this.measureContent} style={[contentModeStyling, contentContainerStyle]}>
                             {hasTitle
                                 ?
                                 <View style={[titleStyle, {width: contentSizeAvailable}, dropShadowStyling]}>
