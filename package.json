@@ -29,8 +29,9 @@
     "Popover.js"
   ],
   "dependencies": {
-    "underscore": "^1.8.3",
-    "prop-types": "^15.5.10"
+    "create-react-class": "^15.6.2",
+    "prop-types": "^15.5.10",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "json": "^9.0.3",

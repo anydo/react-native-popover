@@ -11,7 +11,9 @@ var {
   View,
 } = React;
 
-var PopoverExample = React.createClass({
+var createReactClass = require('create-react-class');
+
+var PopoverExample = createReactClass({
   getInitialState() {
     return {
       isVisible: false,

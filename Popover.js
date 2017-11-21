@@ -36,7 +36,9 @@ function Rect(x, y, width, height) {
     this.height = height;
 }
 
-var Popover = React.createClass({
+var createReactClass = require('create-react-class');
+
+var Popover = createReactClass({
     propTypes: {
         isVisible: PropTypes.bool,
         onClose: PropTypes.func,
