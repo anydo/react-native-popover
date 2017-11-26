@@ -29,6 +29,7 @@
     "Popover.js"
   ],
   "dependencies": {
+    "prop-types": "*",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
