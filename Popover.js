@@ -1,5 +1,6 @@
 'use strict';
 
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {StyleSheet, Dimensions, Animated, Text, TouchableWithoutFeedback, View} from 'react-native';
@@ -36,7 +37,7 @@ function Rect(x, y, width, height) {
     this.height = height;
 }
 
-var Popover = React.createClass({
+var Popover = createReactClass({
     propTypes: {
         isVisible: PropTypes.bool,
         onClose: PropTypes.func,

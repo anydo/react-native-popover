@@ -1,5 +1,6 @@
 'use strict';
 
+var createReactClass = require('create-react-class');
 var React = require('react-native');
 var Popover = require('../Popover');
 var {
@@ -11,7 +12,7 @@ var {
   View,
 } = React;
 
-var PopoverExample = React.createClass({
+var PopoverExample = createReactClass({
   getInitialState() {
     return {
       isVisible: false,

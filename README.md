@@ -23,6 +23,7 @@ npm i --save react-native-popover
 'use strict';
 
 var React = require('react-native');
+var createReactClass = require('create-react-class');
 var Popover = require('react-native-popover');
 var {
   AppRegistry,
@@ -32,7 +33,7 @@ var {
   View,
 } = React;
 
-var PopoverExample = React.createClass({
+var PopoverExample = createReactClass({
   getInitialState() {
     return {
       isVisible: false,
